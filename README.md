@@ -76,8 +76,8 @@ If the code helps your research, please cite our work.
 - If the type of the layer is SINGLE/DOUBLE/TRIPLE/QUADRUPLE, then m is set as 1/2/3/4 respectively.
 - mnist example can be run directly after compilation. cifar10 and cifar10+ requires datasets to be downloaded first.
 - base, gamma, power and lambda_min are parameters for exponential lambda descent. lambda represents the approximation level to the proposed L-Softmax loss (refer to the experimental details in the ICML'16 paper). lambda will be decreased by the equation: lambda = max(lambda_min,base\*(1+gamma\*iteration)^(-power)). It is strong recommended that the user visualizes the lambda descent function before using the loss. The parameter selection is very flexible. Typically, when the optimization is finished, lambda should a sufficiently small value. Also note that, lambda is not always necessary. For MNIST dataset, the L-Softmax loss can work perfectly without lambda. Setting base to 0 can remove the lambda.
-- lambda_min can vary according to the difficulty of datasets. For easy datasets such as mnist and cifar10, lambda_min can be zero. For large and difficult datasets, you should first try set lambda_min as 5 or 10. There is no specific rule to set lambda_min, but generally, it should be as small as possible.
-- Both ReLU and PReLU works well with L-Softmax loss. Empirically, PReLU helps L-Softmax converge easier.
+- lambda_min can vary according to the difficulty of datasets. For easy datasets such as mnist and cifar10, lambda_min can be zero. For large and difficult datasets, you should first try to set lambda_min as 5 or 10. There is no specific rule to set lambda_min, but generally, it should be as small as possible.
+- Both ReLU and PReLU work well with L-Softmax loss. Empirically, PReLU helps L-Softmax converge easier.
 - Batch normalization could help the L-Softmax network converge much easier. It is strong recommended to use it.
 
 ### Disclaimer
