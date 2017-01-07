@@ -1,0 +1,27 @@
+net: "myexamples/cifar10/model/cifar_train_test.prototxt"
+
+test_iter: 100
+test_interval: 1000
+
+base_lr: 0.1
+momentum: 0.9
+weight_decay: 0.0005
+
+
+lr_policy: "multistep"
+gamma: 0.1
+stepvalue: 5000
+stepvalue: 7500
+stepvalue: 30000
+
+display: 200
+
+# The maximum number of iterations
+max_iter: 30000
+
+# snapshot intermediate results
+snapshot: 1000
+snapshot_prefix: "myexamples/cifar10/cifar_snapshot/cifar_train"
+
+# solver mode: CPU or GPU
+solver_mode: GPU
