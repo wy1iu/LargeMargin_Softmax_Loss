@@ -8,13 +8,13 @@ If the code helps your research, please cite our work.
     Proceedings of The 33rd International Conference on Machine Learning. 2016: 507-516.
 
 
-@inproceedings{liu2016large,
-  title={Large-Margin Softmax Loss for Convolutional Neural Networks},
-  author={Liu, Weiyang and Wen, Yandong and Yu, Zhiding and Yang, Meng},
-  booktitle={Proceedings of The 33rd International Conference on Machine Learning},
-  pages={507--516},
-  year={2016}
-}
+    @inproceedings{liu2016large,
+      title={Large-Margin Softmax Loss for Convolutional Neural Networks},
+      author={Liu, Weiyang and Wen, Yandong and Yu, Zhiding and Yang, Meng},
+      booktitle={Proceedings of The 33rd International Conference on Machine Learning},
+      pages={507--516},
+      year={2016}
+    }
 
 
 ### Files
