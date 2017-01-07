@@ -1,6 +1,8 @@
 # Souce code for "Large-Margin Softmax Loss for Convolutional Neural Networks"
 
 ### Citation
+The paper is available at https://arxiv.org/abs/1612.02295.
+
 If the code helps your research, please cite our work.
 
     Large-Margin Softmax Loss for Convolutional Neural Networks
