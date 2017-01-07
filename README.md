@@ -1,4 +1,4 @@
-# Souce code for Large-Margin Softmax Loss for Convolutional Neural Networks
+# Souce code for "Large-Margin Softmax Loss for Convolutional Neural Networks"
 
 ### Citation
 If the code helps your research, please cite our work.
@@ -39,35 +39,35 @@ If the code helps your research, please cite our work.
 ### Usage
 - The prototxt of LargeMarginInnerProduct layer is as follows:
 
-                    layer {
-                      name: "ip2"
-                      type: "LargeMarginInnerProduct"
-                      bottom: "ip1"
-                      bottom: "label"
-                      top: "ip2"
-                      top: "lambda"
-                      param {
-                        name: "ip2"
-                        lr_mult: 1
-                      }
-                      largemargin_inner_product_param {
-                        num_output: 10 //number of outputs
-                        type: QUADRUPLE //value of m
-                        //only SINGLE (m=1), DOUBLE (m=2), TRIPLE (m=3) and QUADRUPLE (m=4) are available.
-                        base: 1000
-                        gamma: 0.000025
-                        power: 35
-                        iteration: 0
-                        lambda_min: 0
-                        //base, gamma, power and lambda_min are parameters of exponential lambda descent
-                        weight_filler {
-                          type: "msra"
-                        }
-                      }
-                      include {
-                        phase: TRAIN
-                      }
+                layer {
+                  name: "ip2"
+                  type: "LargeMarginInnerProduct"
+                  bottom: "ip1"
+                  bottom: "label"
+                  top: "ip2"
+                  top: "lambda"
+                  param {
+                    name: "ip2"
+                    lr_mult: 1
+                  }
+                  largemargin_inner_product_param {
+                    num_output: 10 //number of outputs
+                    type: QUADRUPLE //value of m
+                    //only SINGLE (m=1), DOUBLE (m=2), TRIPLE (m=3) and QUADRUPLE (m=4) are available.
+                    base: 1000
+                    gamma: 0.000025
+                    power: 35
+                    iteration: 0
+                    lambda_min: 0
+                    //base, gamma, power and lambda_min are parameters of exponential lambda descent
+                    weight_filler {
+                      type: "msra"
                     }
+                  }
+                  include {
+                    phase: TRAIN
+                  }
+                }
 
 - For specific examples, please refer to myexamples/mnist folder.
 
