@@ -21,6 +21,7 @@ void LargeMarginInnerProductLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>&
 
   type_ = this->layer_param_.largemargin_inner_product_param().type();
   iter_ = this->layer_param_.largemargin_inner_product_param().iteration();
+  lambda_ = (Dtype)0.;
 
   const int num_output = this->layer_param_.largemargin_inner_product_param().num_output();
   N_ = num_output;
@@ -112,8 +113,8 @@ void LargeMarginInnerProductLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>
   Dtype base_ = this->layer_param_.largemargin_inner_product_param().base();
   Dtype gamma_ = this->layer_param_.largemargin_inner_product_param().gamma();
   Dtype power_ = this->layer_param_.largemargin_inner_product_param().power();
-  Dtype lambda_ = base_ * pow(((Dtype)1. + gamma_ * iter_), -power_);
   Dtype lambda_min_ = this->layer_param_.largemargin_inner_product_param().lambda_min();
+  lambda_ = base_ * pow(((Dtype)1. + gamma_ * iter_), -power_);
   lambda_ = std::max(lambda_, lambda_min_);
   top[1]->mutable_cpu_data()[0] = lambda_;
 
@@ -266,11 +267,12 @@ template <typename Dtype>
 void LargeMarginInnerProductLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
     const vector<bool>& propagate_down,
     const vector<Blob<Dtype>*>& bottom) {
-  Dtype base_ = this->layer_param_.largemargin_inner_product_param().base();
-  Dtype gamma_ = this->layer_param_.largemargin_inner_product_param().gamma();
-  Dtype power_ = this->layer_param_.largemargin_inner_product_param().power();
-  Dtype lambda_ = base_ * pow(((Dtype)1. + gamma_ * iter_), -power_);
-
+  //Dtype base_ = this->layer_param_.largemargin_inner_product_param().base();
+  //Dtype gamma_ = this->layer_param_.largemargin_inner_product_param().gamma();
+  //Dtype power_ = this->layer_param_.largemargin_inner_product_param().power();
+  //Dtype lambda_ = base_ * pow(((Dtype)1. + gamma_ * iter_), -power_);
+  //Dtype lambda_min_ = this->layer_param_.largemargin_inner_product_param().lambda_min();
+  //lambda_ = std::max(lambda_, lambda_min_);
   // |x|/|w|
   Blob<Dtype> inv_w_norm_;
   inv_w_norm_.Reshape(w_norm_.shape());

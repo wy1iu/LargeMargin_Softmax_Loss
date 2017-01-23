@@ -62,6 +62,7 @@ class LargeMarginInnerProductLayer : public Layer<Dtype> {
   Blob<Dtype> cos_theta_quartic_;
 
   int iter_;
+  Dtype lambda_;
 
 };
 

@@ -300,8 +300,8 @@ void LargeMarginInnerProductLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>
   Dtype gamma_ = this->layer_param_.largemargin_inner_product_param().gamma();
   Dtype power_ = this->layer_param_.largemargin_inner_product_param().power();
   Dtype lambda_min_ = this->layer_param_.largemargin_inner_product_param().lambda_min();
-  // lambda_ = base_ * powf(((Dtype)1. + gamma_ * iter_), -power_);
-  Dtype lambda_ = max( base_ * powf(((Dtype)1. + gamma_ * iter_), -power_) , lambda_min_);
+  lambda_ = base_ * powf(((Dtype)1. + gamma_ * iter_), -power_);
+  lambda_ = max(lambda_, lambda_min_);
   top[1]->mutable_cpu_data()[0] = lambda_;
 
   const Dtype* bottom_data = bottom[0]->gpu_data();
@@ -404,10 +404,6 @@ template <typename Dtype>
 void LargeMarginInnerProductLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
     const vector<bool>& propagate_down,
     const vector<Blob<Dtype>*>& bottom) {
-  Dtype base_ = this->layer_param_.largemargin_inner_product_param().base();
-  Dtype gamma_ = this->layer_param_.largemargin_inner_product_param().gamma();
-  Dtype power_ = this->layer_param_.largemargin_inner_product_param().power();
-  Dtype lambda_ = base_ * powf(((Dtype)1. + gamma_ * iter_), -power_);
 
   const Dtype* top_diff = top[0]->gpu_diff();
   const Dtype* bottom_data = bottom[0]->gpu_data();
