@@ -924,29 +924,4 @@ layer {
   bottom: "label"
   top: "loss"
 }
-# for display
-layer {
-  name: "L2length"
-  type: "Reduction"
-  bottom: "pool3"
-  top: "L2length"
-  reduction_param {
-    operation: SUMSQ
-    axis: 1
-  }
-}
-layer {
-  name: "mean_length"
-  type: "Reduction"
-  bottom: "L2length"
-  top: "mean_length"
-  reduction_param {
-    operation: MEAN
-    axis: 0
-  }
-}
-#layer {
-#  name: "silence"
-#  type: "Silence"
-#  bottom: "lambda"
-#}
+

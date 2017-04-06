@@ -77,7 +77,7 @@ __global__ void LargeMargin_double_forward_gpu(int nthreads, const int N_, Dtype
             const Dtype* label, const Dtype* x_norm, const Dtype* w_norm, const Dtype* sign_0, 
             const Dtype* cos_theta_quadratic, Dtype* top) {
   CUDA_KERNEL_LOOP(index, nthreads) {
-    // the label[i]_th top_data
+
     const int i = index / N_;
     const int j = index % N_;
     const int label_value = static_cast<int>(label[i]);
@@ -96,7 +96,7 @@ __global__ void LargeMargin_triple_forward_gpu(int nthreads, const int N_, Dtype
             const Dtype* sign_2, const Dtype* cos_theta, const Dtype* cos_theta_cubic,
             Dtype* top) {
   CUDA_KERNEL_LOOP(index, nthreads) {
-    // the label[i]_th top_data
+
     const int i = index / N_;
     const int j = index % N_;
     const int label_value = static_cast<int>(label[i]);
@@ -115,7 +115,7 @@ __global__ void LargeMargin_quadruple_forward_gpu(int nthreads, const int N_, Dt
             const Dtype* sign_4, const Dtype* cos_theta_quadratic, const Dtype* cos_theta_quartic,
             Dtype* top) {
   CUDA_KERNEL_LOOP(index, nthreads) {
-    // the label[i]_th top_data
+
     const int i = index / N_;
     const int j = index % N_;
     const int label_value = static_cast<int>(label[i]);
@@ -310,25 +310,25 @@ void LargeMarginInnerProductLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>
   const Dtype* label = bottom[1]->gpu_data();
 
   /************************* common variables *************************/
-  // x_norm_ = |x|
+
   int nthreads = M_;
   Compute_bottom_norm_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, K_, bottom_data,
                                 x_norm_.mutable_gpu_data());
-  // w_norm = |w|
+
   nthreads = N_;
   Compute_weight_norm_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, K_, weight,
                                 w_norm_.mutable_gpu_data());
 
   nthreads = M_ * N_;
-  // cos_theta = x'w / (|x|*|w|)
+
   caffe_gpu_gemm<Dtype>(CblasNoTrans, CblasTrans, M_, N_, K_, (Dtype)1.,
       bottom_data, weight, (Dtype)0., cos_theta_.mutable_gpu_data());
   Compute_cos_theta_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, N_, x_norm_.gpu_data(), w_norm_.gpu_data(), 
       	                        cos_theta_.mutable_gpu_data());
-  // sign_0
+
   caffe_gpu_sign(M_ * N_, cos_theta_.gpu_data(), sign_0_.mutable_gpu_data());
   
   /************************* optional variables *************************/
@@ -336,33 +336,33 @@ void LargeMarginInnerProductLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>
   case LargeMarginInnerProductParameter_LargeMarginType_SINGLE:
     break;
   case LargeMarginInnerProductParameter_LargeMarginType_DOUBLE:
-    // cos_theta_quadratic
+
     caffe_gpu_powx(M_ * N_, cos_theta_.gpu_data(), (Dtype)2., cos_theta_quadratic_.mutable_gpu_data());
     break;
   case LargeMarginInnerProductParameter_LargeMarginType_TRIPLE:
-    // cos_theta_quadratic && cos_theta_cubic
+
     caffe_gpu_powx(M_ * N_, cos_theta_.gpu_data(), (Dtype)2., cos_theta_quadratic_.mutable_gpu_data());
     caffe_gpu_powx(M_ * N_, cos_theta_.gpu_data(), (Dtype)3., cos_theta_cubic_.mutable_gpu_data());
-    // sign_1 = sign(abs(cos_theta) - 0.5)
+
     Compute_sign_1_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, cos_theta_.gpu_data(), sign_1_.mutable_gpu_data());
     caffe_gpu_sign(M_ * N_, sign_1_.gpu_data(), sign_1_.mutable_gpu_data());
-    // sign_2 = sign_0 * (1 + sign_1) - 2
+
     Compute_sign_2_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, sign_0_.gpu_data(),
                                 sign_1_.gpu_data(), sign_2_.mutable_gpu_data());
     break;
   case LargeMarginInnerProductParameter_LargeMarginType_QUADRUPLE:
-    // cos_theta_quadratic && cos_theta_cubic && cos_theta_quartic
+
     caffe_gpu_powx(M_ * N_, cos_theta_.gpu_data(), (Dtype)2., cos_theta_quadratic_.mutable_gpu_data());
     caffe_gpu_powx(M_ * N_, cos_theta_.gpu_data(), (Dtype)3., cos_theta_cubic_.mutable_gpu_data());
     caffe_gpu_powx(M_ * N_, cos_theta_.gpu_data(), (Dtype)4., cos_theta_quartic_.mutable_gpu_data());
-    // sign_3 = sign_0 * sign(2 * cos_theta_quadratic_ - 1)
+
     Compute_sign_3_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, sign_0_.gpu_data(), cos_theta_quadratic_.gpu_data(),
                                 sign_3_.mutable_gpu_data());
     caffe_gpu_sign(M_ * N_, sign_3_.gpu_data(), sign_3_.mutable_gpu_data());
-    // sign_4 = 2 * sign_0 + sign_3 - 3
+
     Compute_sign_4_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, sign_0_.gpu_data(),
                                 sign_3_.gpu_data(), sign_4_.mutable_gpu_data());
@@ -378,7 +378,7 @@ void LargeMarginInnerProductLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>
   case LargeMarginInnerProductParameter_LargeMarginType_SINGLE:
     break;
   case LargeMarginInnerProductParameter_LargeMarginType_DOUBLE:
-    // caffe_gpu_memcpy(M_ * N_, cos_theta_.gpu_data(), top_data);
+
     LargeMargin_double_forward_gpu<Dtype><<<CAFFE_GET_BLOCKS(nthreads),
       CAFFE_CUDA_NUM_THREADS>>>(nthreads, N_, lambda_, label, x_norm_.gpu_data(), w_norm_.gpu_data(),
       	                        sign_0_.gpu_data(), cos_theta_quadratic_.gpu_data(), top_data);
