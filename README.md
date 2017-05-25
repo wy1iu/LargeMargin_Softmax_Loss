@@ -19,7 +19,8 @@ If the code helps your research, please cite our work.
     }
 
 ### Update
-- 2017/1/23 fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)
+- 2017/5/25 Try to replace ReLU with PReLU, if you can not adjust lambda to make the network converge. (I also mentioned this in the note.)
+- 2017/1/23 Fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)
 - 2017/1/23 A mxnet implementation is also available at [here](https://github.com/luoyetx/mx-lsoftmax). Credit goes to [luoyetx](https://github.com/luoyetx).
 
 ### Files
