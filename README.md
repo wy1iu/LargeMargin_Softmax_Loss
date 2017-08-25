@@ -1,9 +1,16 @@
-# Souce code for "Large-Margin Softmax Loss for Convolutional Neural Networks"
+# Large-Margin Softmax Loss for Convolutional Neural Networks
+
+By Weiyang Liu, Yandong Wen, Zhiding Yu, Meng Yang
+
+### Introduction
+We introduce a large-margin softmax (L-Softmax) loss for convolutional neural networks. L-Softmax loss can greatly improve the generalization ability of CNNs, so it is very suitable for generalization classification, feature embedding and biometrics (e.g. face) verification.
+
+A mxnet implementation is also available at [here](https://github.com/luoyetx/mx-lsoftmax) by [luoyetx](https://github.com/luoyetx).
 
 ### Citation
-The paper is available at https://arxiv.org/abs/1612.02295.
+The paper is published in [ICML 2017](http://proceedings.mlr.press/v48/liud16.pdf) and also available at [arXiv](https://arxiv.org/abs/1612.02295).
 
-If the code helps your research, please cite our work.
+If the code helps your research, please consider to cite our work:
 
     Large-Margin Softmax Loss for Convolutional Neural Networks
     Weiyang Liu, Yandong Wen, Zhiding Yu and Meng Yang
@@ -18,9 +25,8 @@ If the code helps your research, please cite our work.
     }
 
 ### Update
-- 2017/5/25 Try to replace ReLU with PReLU, if you can not adjust lambda to make the network converge. (I also mentioned this in the note.)
-- 2017/1/23 Fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)
-- 2017/1/23 A mxnet implementation is also available at [here](https://github.com/luoyetx/mx-lsoftmax). Credit goes to [luoyetx](https://github.com/luoyetx).
+- 2017/1/23 Fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)!
+- 2016/12/18 The repository is officially built.
 
 ### Files
 - Caffe library
@@ -76,7 +82,7 @@ If the code helps your research, please cite our work.
 
 - For specific examples, please refer to myexamples/mnist folder.
 
-### Notes
+### Notes for training
 - L-Softmax loss is the combination of "LargeMarginInnerProduct" layer and "SoftmaxWithLoss" layer.
 - If the type of the layer is SINGLE/DOUBLE/TRIPLE/QUADRUPLE, then m is set as 1/2/3/4 respectively.
 - mnist example can be run directly after compilation. cifar10 and cifar10+ requires datasets to be downloaded first.
@@ -85,17 +91,13 @@ If the code helps your research, please cite our work.
 - Both ReLU and PReLU work well with L-Softmax loss. Empirically, PReLU helps L-Softmax converge easier.
 - Batch normalization could help the L-Softmax network converge much easier. It is strong recommended to use it.
 
-### Disclaimer
-- This code is for research purpose only.
-
 ### Contact
 If you have any questions, feel free to contact:
 - Weiyang Liu (wyliu@gatech.edu)
 - Yandong Wen (yandongw@andrew.cmu.edu)
 
-
 ### License
-Copyright(c) all authors
+Copyright(c) Weiyang Liu and Yandong Wen
 All rights reserved.
 
 MIT License
