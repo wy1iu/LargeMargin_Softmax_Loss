@@ -8,7 +8,7 @@ We introduce a large-margin softmax (L-Softmax) loss for convolutional neural ne
 A mxnet implementation is also available at [here](https://github.com/luoyetx/mx-lsoftmax) by [luoyetx](https://github.com/luoyetx).
 
 ### Citation
-The paper is published in [ICML 2017](http://proceedings.mlr.press/v48/liud16.pdf) and also available at [arXiv](https://arxiv.org/abs/1612.02295).
+The paper is published in [ICML 2016](http://proceedings.mlr.press/v48/liud16.pdf) and also available at [arXiv](https://arxiv.org/abs/1612.02295).
 
 If the code helps your research, please consider to cite our work:
 
