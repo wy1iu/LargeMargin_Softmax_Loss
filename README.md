@@ -5,8 +5,6 @@ By Weiyang Liu, Yandong Wen, Zhiding Yu, Meng Yang
 ### Introduction
 We introduce a large-margin softmax (L-Softmax) loss for convolutional neural networks. L-Softmax loss can greatly improve the generalization ability of CNNs, so it is very suitable for general classification, feature embedding and biometrics (e.g. face) verification.
 
-A mxnet implementation is also available at [here](https://github.com/luoyetx/mx-lsoftmax) by [luoyetx](https://github.com/luoyetx).
-
 ### Citation
 The paper is published in [ICML 2016](http://proceedings.mlr.press/v48/liud16.pdf) and also available at [arXiv](https://arxiv.org/abs/1612.02295).
 
@@ -23,6 +21,10 @@ If the code helps your research, please consider to cite our work:
       pages={507--516},
       year={2016}
     }
+
+### Third-party Re-implementation
+- MXNet: [code](https://github.com/luoyetx/mx-lsoftmax) by [luoyetx](https://github.com/luoyetx).
+- Caffe2: [code](https://github.com/tpys/face-recognition-caffe2) by [tpys](https://github.com/tpys).
 
 ### Update
 - 2017/1/23 Fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)!
