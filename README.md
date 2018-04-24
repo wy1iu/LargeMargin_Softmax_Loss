@@ -24,8 +24,11 @@ If the code helps your research, please consider to cite our work:
 
 ### Third-party Re-implementation
 - MXNet: [code](https://github.com/luoyetx/mx-lsoftmax) by [luoyetx](https://github.com/luoyetx).
+- TensorFlow (with C++ API): [code](https://github.com/HiKapok/tf.extra_losses) by [Changan Wang](https://github.com/HiKapok).
 - Caffe2: [code](https://github.com/tpys/face-recognition-caffe2) by [tpys](https://github.com/tpys).
 - PyTorch: [code](https://github.com/jihunchoi/lsoftmax-pytorch) by [jihunchoi](https://github.com/jihunchoi).
+
+Thanks the contributions for all the third-party re-implementations!
 
 ### Update
 - 2017/1/23 Fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)!
