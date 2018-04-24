@@ -3,7 +3,7 @@
 By Weiyang Liu, Yandong Wen, Zhiding Yu, Meng Yang
 
 ### Introduction
-We introduce a large-margin softmax (L-Softmax) loss for convolutional neural networks. L-Softmax loss can greatly improve the generalization ability of CNNs, so it is very suitable for general classification, feature embedding and biometrics (e.g. face) verification.
+We introduce a large-margin softmax (L-Softmax) loss for convolutional neural networks. L-Softmax loss can greatly improve the generalization ability of CNNs, so it is very suitable for general classification, feature embedding and biometrics (e.g. face) verification. We give the 2D feature visualization on MNIST to illustrate our L-Softmax loss.
 
 <img src="asserts/mnist_2d.png" width="90%" height="90%">
 
