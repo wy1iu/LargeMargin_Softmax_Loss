@@ -29,6 +29,7 @@ If the code helps your research, please consider to cite our work:
 - TensorFlow (with C++ API): [code](https://github.com/HiKapok/tf.extra_losses) by [Changan Wang](https://github.com/HiKapok).
 - TensorFlow: [code](https://github.com/auroua/L_Softmax_TensorFlow) by [auroua](https://github.com/auroua)
 - Caffe2: [code](https://github.com/tpys/face-recognition-caffe2) by [tpys](https://github.com/tpys).
+- PyTorch: [code](https://github.com/amirhfarzaneh/lsoftmax-pytorch) by [Amir H. Farzaneh](https://github.com/amirhfarzaneh).
 - PyTorch: [code](https://github.com/jihunchoi/lsoftmax-pytorch) by [jihunchoi](https://github.com/jihunchoi).
 
 Thanks the contributions for all the third-party re-implementations!
