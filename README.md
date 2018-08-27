@@ -32,7 +32,7 @@ If the code helps your research, please consider to cite our work:
 - PyTorch: [code](https://github.com/amirhfarzaneh/lsoftmax-pytorch) by [Amir H. Farzaneh](https://github.com/amirhfarzaneh).
 - PyTorch: [code](https://github.com/jihunchoi/lsoftmax-pytorch) by [jihunchoi](https://github.com/jihunchoi).
 
-Thanks the contributions for all the third-party re-implementations!
+We greatly thank the contributions for all the third-party re-implementations!
 
 ### Update
 - 2017/1/23 Fix a bug that lambda_min may change during backprop. Thanks [luoyetx](https://github.com/luoyetx)!
